@@ -137,20 +137,36 @@
           }
 
           .copyable {
+            position: relative;
             font-size: 0.8em;
             color: #ccc;
             cursor: pointer;
             padding: 0.125em 0.25em;
             border-radius: 0.25em;
-            transition: background 0.15s, color 0.15s;
+            transition: background 0.15s;
 
             &:hover {
               background: #222;
             }
 
-            &.copied {
+            .copied-overlay {
+              position: absolute;
+              inset: 0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              background: rgba(22, 101, 52, 0.3);
               color: #86efac;
-              background: #16653433;
+              font-size: 0.85em;
+              font-weight: 600;
+              border-radius: 0.25em;
+              animation: copied-flash 1.5s ease-out;
+              span{
+                background-color: rgba(#86efac, .9);
+                color: #333;
+                padding: .3em .5em;
+                border-radius: .3em;
+              }
             }
           }
 
@@ -195,21 +211,17 @@
                 list-style: disc;
 
                 li {
+                  position: relative;
                   font-size: 0.75em;
                   color: #888;
                   margin-bottom: 0.125em;
                   cursor: pointer;
                   padding: 0.125em 0.25em;
                   border-radius: 0.25em;
-                  transition: background 0.15s, color 0.15s;
+                  transition: background 0.15s;
 
                   &:hover {
                     background: #222;
-                  }
-
-                  &.copied {
-                    color: #86efac;
-                    background: #16653433;
                   }
                 }
               }
@@ -224,4 +236,10 @@
 @keyframes status-blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.4; }
+}
+
+@keyframes copied-flash {
+  0% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { opacity: 0; }
 }

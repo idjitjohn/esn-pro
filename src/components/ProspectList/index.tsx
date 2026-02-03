@@ -58,7 +58,8 @@ export default function ProspectList({ className, refreshRef }: Props) {
                           className={`copyable ${copiedText === line ? 'copied' : ''}`}
                           onClick={(e) => { e.stopPropagation(); copyToClipboard(line) }}
                         >
-                          {copiedText === line ? 'Copied!' : line}
+                          {line}
+                          {copiedText === line && <span className="copied-overlay"><span>Copied!</span></span>}
                         </span>
                       ))}
                     </div>
@@ -81,7 +82,8 @@ export default function ProspectList({ className, refreshRef }: Props) {
                                   className={`copyable ${copiedText === c ? 'copied' : ''}`}
                                   onClick={(e) => { e.stopPropagation(); copyToClipboard(c) }}
                                 >
-                                  {copiedText === c ? 'Copied!' : c}
+                                  {c}
+                                  {copiedText === c && <span className="copied-overlay">Copied!</span>}
                                 </li>
                               ))}
                             </ul>
