@@ -57,11 +57,18 @@
         }
 
         .link {
+          display: block;
           font-size: 0.75em;
           color: #666;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          text-decoration: none;
+
+          &:hover {
+            color: #888;
+            text-decoration: underline;
+          }
         }
       }
 
@@ -123,6 +130,30 @@
             color: #ccc;
           }
 
+          .message-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25em;
+          }
+
+          .copyable {
+            font-size: 0.8em;
+            color: #ccc;
+            cursor: pointer;
+            padding: 0.125em 0.25em;
+            border-radius: 0.25em;
+            transition: background 0.15s, color 0.15s;
+
+            &:hover {
+              background: #222;
+            }
+
+            &.copied {
+              color: #86efac;
+              background: #16653433;
+            }
+          }
+
           .raw {
             display: block;
             white-space: pre-wrap;
@@ -147,9 +178,15 @@
               padding: 0.5em;
 
               .post-url {
+                display: block;
                 font-size: 0.8em;
-                color: #ccc;
+                color: #8bb4ff;
                 word-break: break-all;
+                text-decoration: none;
+
+                &:hover {
+                  text-decoration: underline;
+                }
               }
 
               .comments {
@@ -161,6 +198,19 @@
                   font-size: 0.75em;
                   color: #888;
                   margin-bottom: 0.125em;
+                  cursor: pointer;
+                  padding: 0.125em 0.25em;
+                  border-radius: 0.25em;
+                  transition: background 0.15s, color 0.15s;
+
+                  &:hover {
+                    background: #222;
+                  }
+
+                  &.copied {
+                    color: #86efac;
+                    background: #16653433;
+                  }
                 }
               }
             }

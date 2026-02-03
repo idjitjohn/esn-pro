@@ -84,5 +84,13 @@ export function useProspectList() {
     }
   }, [confirmingId])
 
-  return { prospects, loading, error, refresh, selectedId, handleItemClick, confirmingId, handleStatusClick }
+  const [copiedText, setCopiedText] = useState('')
+
+  function copyToClipboard(text: string) {
+    navigator.clipboard.writeText(text)
+    setCopiedText(text)
+    setTimeout(() => setCopiedText(''), 1500)
+  }
+
+  return { prospects, loading, error, refresh, selectedId, handleItemClick, confirmingId, handleStatusClick, copiedText, copyToClipboard }
 }

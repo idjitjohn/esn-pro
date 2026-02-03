@@ -13,6 +13,7 @@ export default function ProspectList({ className, refreshRef }: Props) {
     prospects, loading, error, refresh,
     selectedId, handleItemClick,
     confirmingId, handleStatusClick,
+    copiedText, copyToClipboard,
   } = useProspectList()
 
   if (refreshRef) refreshRef(refresh)
@@ -33,7 +34,7 @@ export default function ProspectList({ className, refreshRef }: Props) {
               />
               <div className="info">
                 <div className="name">{p.name || p.link}</div>
-                <div className="link">{p.link}</div>
+                <a className="link" href={p.link} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>{p.link}</a>
               </div>
               <button
                 className={`status ${p.prospected ? 'prospected' : 'not-prospected'} ${confirmingId === p._id ? 'confirming' : ''}`}
@@ -50,7 +51,17 @@ export default function ProspectList({ className, refreshRef }: Props) {
                 {p.message && (
                   <div className="field">
                     <span className="label">Message</span>
-                    <span className="value">{p.message}</span>
+                    <div className="message-lines">
+                      {p.message.split('\n').filter(Boolean).map((line, i) => (
+                        <span
+                          key={i}
+                          className={`copyable ${copiedText === line ? 'copied' : ''}`}
+                          onClick={(e) => { e.stopPropagation(); copyToClipboard(line) }}
+                        >
+                          {copiedText === line ? 'Copied!' : line}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 )}
                 {p.posts && p.posts.length > 0 && (
@@ -59,10 +70,20 @@ export default function ProspectList({ className, refreshRef }: Props) {
                     <div className="posts">
                       {p.posts.map((post, i) => (
                         <div key={i} className="post">
-                          <span className="post-url">{post.url}</span>
+                          <a className="post-url" href={post.url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                            {post.url}
+                          </a>
                           {post.comments.length > 0 && (
                             <ul className="comments">
-                              {post.comments.map((c, j) => <li key={j}>{c}</li>)}
+                              {post.comments.map((c, j) => (
+                                <li
+                                  key={j}
+                                  className={`copyable ${copiedText === c ? 'copied' : ''}`}
+                                  onClick={(e) => { e.stopPropagation(); copyToClipboard(c) }}
+                                >
+                                  {copiedText === c ? 'Copied!' : c}
+                                </li>
+                              ))}
                             </ul>
                           )}
                         </div>
