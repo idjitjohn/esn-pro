@@ -1,0 +1,96 @@
+.ProspectList {
+  margin-top: 1.5em;
+
+  .empty {
+    color: #666;
+    font-size: 0.875em;
+  }
+
+  .error {
+    color: #ef4444;
+    font-size: 0.875em;
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+
+    .item {
+      display: flex;
+      align-items: center;
+      gap: 0.75em;
+      padding: 0.75em 1em;
+      background: #1a1a1a;
+      border: 1px solid #222;
+      border-radius: 0.5em;
+
+      .avatar {
+        width: 2.25em;
+        height: 2.25em;
+        border-radius: 50%;
+        background-color: #333;
+        background-size: cover;
+        background-position: center;
+        flex-shrink: 0;
+      }
+
+      .info {
+        flex: 1;
+        min-width: 0;
+
+        .name {
+          font-size: 0.875em;
+          color: #ededed;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .link {
+          font-size: 0.75em;
+          color: #666;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      .status {
+        flex-shrink: 0;
+        font-size: 0.7em;
+        padding: 0.25em 0.625em;
+        border: none;
+        border-radius: 1em;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        cursor: pointer;
+        transition: opacity 0.2s;
+
+        &:hover {
+          opacity: 0.8;
+        }
+
+        &.prospected {
+          background: #166534;
+          color: #86efac;
+        }
+
+        &.not-prospected {
+          background: #333;
+          color: #888;
+        }
+
+        &.confirming {
+          animation: status-blink 0.8s ease-in-out infinite;
+        }
+      }
+    }
+  }
+}
+
+@keyframes status-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}

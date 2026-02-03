@@ -1,0 +1,108 @@
+.AddProspectModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+
+  .modal {
+    background: #0a0a0a;
+    border: 1px solid #333;
+    border-radius: 0.75em;
+    padding: 2em;
+    width: 100%;
+    max-width: 28em;
+
+    h3 {
+      font-size: 1.125em;
+      font-weight: 600;
+      margin-bottom: 1.25em;
+      color: #ededed;
+    }
+
+    .field {
+      margin-bottom: 1em;
+
+      label {
+        display: block;
+        font-size: 0.8em;
+        color: #888;
+        margin-bottom: 0.375em;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 0.5em 0.75em;
+        border-radius: 0.5em;
+        border: 1px solid #333;
+        background: #1a1a1a;
+        color: #ededed;
+        font-size: 0.875em;
+        font-family: inherit;
+        outline: none;
+        transition: border-color 0.2s;
+
+        &::placeholder {
+          color: #666;
+        }
+
+        &:focus {
+          border-color: #888;
+        }
+      }
+
+      textarea {
+        min-height: 5em;
+        resize: vertical;
+      }
+    }
+
+    .error {
+      color: #ef4444;
+      font-size: 0.875em;
+      margin-bottom: 1em;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5em;
+      margin-top: 0.5em;
+
+      button {
+        padding: 0.5em 1em;
+        border-radius: 0.5em;
+        border: 1px solid #333;
+        background: #1a1a1a;
+        color: #ededed;
+        font-size: 0.875em;
+        cursor: pointer;
+        transition: background 0.2s, border-color 0.2s;
+
+        &:hover:not(:disabled) {
+          background: #2a2a2a;
+          border-color: #555;
+        }
+
+        &:disabled {
+          opacity: 0.4;
+          cursor: not-allowed;
+        }
+
+        &:last-child {
+          background: #ededed;
+          color: #0a0a0a;
+          border-color: #ededed;
+
+          &:hover:not(:disabled) {
+            background: #ccc;
+            border-color: #ccc;
+          }
+        }
+      }
+    }
+  }
+}

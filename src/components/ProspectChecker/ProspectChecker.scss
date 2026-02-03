@@ -1,0 +1,93 @@
+.ProspectChecker {
+  h2 {
+    font-size: 1.25em;
+    margin-bottom: 1em;
+    font-weight: 600;
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    flex-wrap: wrap;
+
+    input {
+      flex: 1;
+      min-width: 15em;
+      padding: 0.5em 0.75em;
+      border-radius: 0.5em;
+      border: 1px solid #333;
+      background: #1a1a1a;
+      color: #ededed;
+      font-size: 0.875em;
+      outline: none;
+      transition: border-color 0.2s;
+
+      &::placeholder {
+        color: #666;
+      }
+
+      &:focus {
+        border-color: #888;
+      }
+    }
+
+    button {
+      padding: 0.5em 1em;
+      border-radius: 0.5em;
+      border: 1px solid #333;
+      background: #1a1a1a;
+      color: #ededed;
+      font-size: 0.875em;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      white-space: nowrap;
+
+      &:hover:not(:disabled) {
+        background: #2a2a2a;
+        border-color: #555;
+      }
+
+      &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+
+      &:last-child {
+        background: #ededed;
+        color: #0a0a0a;
+        border-color: #ededed;
+
+        &:hover:not(:disabled) {
+          background: #ccc;
+          border-color: #ccc;
+        }
+      }
+    }
+  }
+
+  .loading {
+    margin-top: 1em;
+    color: #888;
+    font-size: 0.875em;
+  }
+
+  .error {
+    margin-top: 1em;
+    color: #ef4444;
+    font-size: 0.875em;
+  }
+
+  .result {
+    margin-top: 1em;
+    padding: 1em;
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 0.5em;
+    white-space: pre-wrap;
+    font-size: 0.8em;
+    font-family: var(--font-geist-mono), monospace;
+    color: #aaa;
+    overflow-x: auto;
+  }
+}

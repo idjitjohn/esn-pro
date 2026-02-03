@@ -35,6 +35,35 @@ a {
   text-decoration: none;
 }
 
+.prospects-page {
+  max-width: 40em;
+  margin: 0 auto;
+  padding: 3em 1.5em;
+}
+
+.prospects-page h1 {
+  font-size: 1.75em;
+  font-weight: 700;
+  margin-bottom: 1.5em;
+}
+
+.add-btn {
+  padding: 0.5em 1em;
+  margin-bottom: 1.5em;
+  border-radius: 0.5em;
+  border: 1px solid #333;
+  background: #ededed;
+  color: #0a0a0a;
+  font-size: 0.875em;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.add-btn:hover {
+  background: #ccc;
+  border-color: #ccc;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
