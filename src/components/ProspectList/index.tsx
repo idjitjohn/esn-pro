@@ -9,11 +9,15 @@ export interface Props {
 }
 
 export default function ProspectList({ className, refreshRef }: Props) {
-  const { prospects, loading, error, refresh, confirmingId, handleStatusClick } = useProspectList()
+  const {
+    prospects, loading, error, refresh,
+    selectedId, handleItemClick,
+    confirmingId, handleStatusClick,
+  } = useProspectList()
 
   if (refreshRef) refreshRef(refresh)
 
-  if (loading) return <p className="ProspectList">{' '}Loading...</p>
+  if (loading) return <p className="ProspectList">Loading...</p>
   if (error) return <p className="ProspectList error">{error}</p>
 
   return (
@@ -21,23 +25,67 @@ export default function ProspectList({ className, refreshRef }: Props) {
       {prospects.length === 0 && <p className="empty">No prospects yet.</p>}
       <div className="list">
         {prospects.map((p) => (
-          <div key={p._id} className="item">
-            <div
-              className="avatar"
-              style={p.image ? { backgroundImage: `url(${p.image})` } : undefined}
-            />
-            <div className="info">
-              <div className="name">{p.name || p.link}</div>
-              <div className="link">{p.link}</div>
+          <div key={p._id} className={`item ${selectedId === p._id ? 'selected' : ''}`}>
+            <div className="row" onClick={() => handleItemClick(p._id)}>
+              <div
+                className="avatar"
+                style={p.image ? { backgroundImage: `url(${p.image})` } : undefined}
+              />
+              <div className="info">
+                <div className="name">{p.name || p.link}</div>
+                <div className="link">{p.link}</div>
+              </div>
+              <button
+                className={`status ${p.prospected ? 'prospected' : 'not-prospected'} ${confirmingId === p._id ? 'confirming' : ''}`}
+                onClick={(e) => { e.stopPropagation(); handleStatusClick(p._id) }}
+              >
+                {confirmingId === p._id
+                  ? `Change to ${p.prospected ? 'Not prospected' : 'Prospected'}?`
+                  : p.prospected ? 'Prospected' : 'Not prospected'}
+              </button>
             </div>
-            <button
-              className={`status ${p.prospected ? 'prospected' : 'not-prospected'} ${confirmingId === p._id ? 'confirming' : ''}`}
-              onClick={() => handleStatusClick(p._id)}
-            >
-              {confirmingId === p._id
-                ? `Change to ${p.prospected ? 'Not prospected' : 'Prospected'}?`
-                : p.prospected ? 'Prospected' : 'Not prospected'}
-            </button>
+
+            {selectedId === p._id && (
+              <div className="detail">
+                {p.message && (
+                  <div className="field">
+                    <span className="label">Message</span>
+                    <span className="value">{p.message}</span>
+                  </div>
+                )}
+                {p.posts && p.posts.length > 0 && (
+                  <div className="field">
+                    <span className="label">Posts</span>
+                    <div className="posts">
+                      {p.posts.map((post, i) => (
+                        <div key={i} className="post">
+                          <span className="post-url">{post.url}</span>
+                          {post.comments.length > 0 && (
+                            <ul className="comments">
+                              {post.comments.map((c, j) => <li key={j}>{c}</li>)}
+                            </ul>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {p.data && Object.keys(p.data).length > 0 && (
+                  <div className="field">
+                    <span className="label">Data</span>
+                    <pre className="value raw">{JSON.stringify(p.data, null, 2)}</pre>
+                  </div>
+                )}
+                <div className="field">
+                  <span className="label">Created</span>
+                  <span className="value">{new Date(p.createdAt).toLocaleString()}</span>
+                </div>
+                <div className="field">
+                  <span className="label">Updated</span>
+                  <span className="value">{new Date(p.updatedAt).toLocaleString()}</span>
+                </div>
+              </div>
+            )}
           </div>
         ))}
       </div>

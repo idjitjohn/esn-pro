@@ -58,6 +58,73 @@
         min-height: 5em;
         resize: vertical;
       }
+
+      .posts-editor {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+
+        .post-entry {
+          background: #111;
+          border-radius: 0.375em;
+          padding: 0.5em;
+
+          .post-header {
+            display: flex;
+            gap: 0.375em;
+
+            input {
+              flex: 1;
+            }
+          }
+
+          .comments-list {
+            margin-top: 0.375em;
+            padding-left: 0.75em;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25em;
+
+            .comment-entry {
+              display: flex;
+              gap: 0.375em;
+
+              input {
+                flex: 1;
+                font-size: 0.8em;
+              }
+            }
+          }
+        }
+
+        .add-small-btn {
+          align-self: flex-start;
+          background: none;
+          border: none;
+          color: #888;
+          font-size: 0.75em;
+          cursor: pointer;
+          padding: 0.25em 0;
+
+          &:hover {
+            color: #ededed;
+          }
+        }
+
+        .remove-btn {
+          background: none;
+          border: none;
+          color: #666;
+          font-size: 0.8em;
+          cursor: pointer;
+          padding: 0.25em 0.5em;
+          flex-shrink: 0;
+
+          &:hover {
+            color: #ef4444;
+          }
+        }
+      }
     }
 
     .error {

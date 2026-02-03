@@ -1,11 +1,18 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
+export interface Post {
+  url: string
+  comments: string[]
+}
+
 export interface Prospect {
   _id: string
   link: string
   name?: string
   image?: string
   data?: any
+  message?: string
+  posts?: Post[]
   prospected: boolean
   createdAt: string
   updatedAt: string
@@ -34,6 +41,12 @@ export function useProspectList() {
   useEffect(() => {
     refresh()
   }, [refresh])
+
+  const [selectedId, setSelectedId] = useState<string | null>(null)
+
+  function handleItemClick(id: string) {
+    setSelectedId((prev) => (prev === id ? null : id))
+  }
 
   const [confirmingId, setConfirmingId] = useState<string | null>(null)
   const confirmTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -71,5 +84,5 @@ export function useProspectList() {
     }
   }, [confirmingId])
 
-  return { prospects, loading, error, refresh, confirmingId, handleStatusClick }
+  return { prospects, loading, error, refresh, selectedId, handleItemClick, confirmingId, handleStatusClick }
 }

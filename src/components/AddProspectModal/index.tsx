@@ -13,6 +13,8 @@ export default function AddProspectModal({ open, onClose }: Props) {
     link, setLink,
     name, setName,
     image, setImage,
+    message, setMessage,
+    posts, addPost, removePost, updatePostUrl, addComment, removeComment, updateComment,
     notes, setNotes,
     loading, error, disabled,
     handleSubmit, resetForm,
@@ -43,6 +45,43 @@ export default function AddProspectModal({ open, onClose }: Props) {
         <div className="field">
           <label>Image URL</label>
           <input value={image} onChange={(e) => setImage(e.target.value)} placeholder="https://..." />
+        </div>
+
+        <div className="field">
+          <label>Message</label>
+          <textarea value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Prospecting message..." />
+        </div>
+
+        <div className="field">
+          <label>Posts</label>
+          <div className="posts-editor">
+            {posts.map((post, i) => (
+              <div key={i} className="post-entry">
+                <div className="post-header">
+                  <input
+                    value={post.url}
+                    onChange={(e) => updatePostUrl(i, e.target.value)}
+                    placeholder="Post URL"
+                  />
+                  <button className="remove-btn" onClick={() => removePost(i)}>x</button>
+                </div>
+                <div className="comments-list">
+                  {post.comments.map((c, j) => (
+                    <div key={j} className="comment-entry">
+                      <input
+                        value={c}
+                        onChange={(e) => updateComment(i, j, e.target.value)}
+                        placeholder="Comment"
+                      />
+                      <button className="remove-btn" onClick={() => removeComment(i, j)}>x</button>
+                    </div>
+                  ))}
+                  <button className="add-small-btn" onClick={() => addComment(i)}>+ Comment</button>
+                </div>
+              </div>
+            ))}
+            <button className="add-small-btn" onClick={addPost}>+ Post</button>
+          </div>
         </div>
 
         <div className="field">

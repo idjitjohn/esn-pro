@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" version="1.1" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <linearGradient id="bg" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#1e1b4b" offset="0"/>
+   <stop stop-color="#0f0a2e" offset="1"/>
+  </linearGradient>
+  <linearGradient id="fig" x1="12" x2="18" y1="8" y2="26" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#e0e7ff" offset="0"/>
+   <stop stop-color="#a5b4fc" offset="1"/>
+  </linearGradient>
+  <linearGradient id="linearGradient8" x1="12" x2="18" y1="8" y2="26" gradientTransform="translate(2.3051 -4.0678)" gradientUnits="userSpaceOnUse" xlink:href="#fig"/>
+  <linearGradient id="linearGradient9" x1="12" x2="18" y1="8" y2="26" gradientTransform="translate(.67797 -.81356)" gradientUnits="userSpaceOnUse" xlink:href="#fig"/>
+ </defs>
+ <circle cx="16" cy="16" r="16" fill="url(#bg)"/>
+ <circle cx="15.678" cy="9.6864" r="4.5" fill="url(#linearGradient9)"/>
+ <path d="m6.3051 23.932c0-5 4-9 9-9s9 4 9 9" fill="url(#linearGradient8)" opacity=".85"/>
+ <circle cx="26.669" cy="10.246" r="2.4" fill="#22d3ee"/>
+ <circle cx="21.534" cy="27.288" r="2" fill="#a78bfa"/>
+ <circle cx="28.195" cy="20.153" r="1.7" fill="#f472b6"/>
+</svg>

@@ -17,13 +17,22 @@
     gap: 0.5em;
 
     .item {
-      display: flex;
-      align-items: center;
-      gap: 0.75em;
-      padding: 0.75em 1em;
       background: #1a1a1a;
       border: 1px solid #222;
       border-radius: 0.5em;
+      cursor: pointer;
+      transition: border-color 0.2s;
+
+      &.selected {
+        border-color: #444;
+      }
+
+      .row {
+        display: flex;
+        align-items: center;
+        gap: 0.75em;
+        padding: 0.75em 1em;
+      }
 
       .avatar {
         width: 2.25em;
@@ -84,6 +93,78 @@
 
         &.confirming {
           animation: status-blink 0.8s ease-in-out infinite;
+        }
+      }
+
+      .detail {
+        padding: 0 1em 1em;
+        border-top: 1px solid #222;
+        margin-top: 0;
+
+        .field {
+          padding: 0.5em 0;
+          border-bottom: 1px solid #1a1a1a;
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          .label {
+            display: block;
+            font-size: 0.7em;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.25em;
+          }
+
+          .value {
+            font-size: 0.8em;
+            color: #ccc;
+          }
+
+          .raw {
+            display: block;
+            white-space: pre-wrap;
+            font-family: var(--font-geist-mono), monospace;
+            font-size: 0.75em;
+            color: #aaa;
+            background: #111;
+            padding: 0.5em;
+            border-radius: 0.375em;
+            margin-top: 0.25em;
+          }
+
+          .posts {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+            margin-top: 0.25em;
+
+            .post {
+              background: #111;
+              border-radius: 0.375em;
+              padding: 0.5em;
+
+              .post-url {
+                font-size: 0.8em;
+                color: #ccc;
+                word-break: break-all;
+              }
+
+              .comments {
+                margin: 0.375em 0 0 1em;
+                padding: 0;
+                list-style: disc;
+
+                li {
+                  font-size: 0.75em;
+                  color: #888;
+                  margin-bottom: 0.125em;
+                }
+              }
+            }
+          }
         }
       }
     }
