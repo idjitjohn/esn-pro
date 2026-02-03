@@ -52,7 +52,7 @@ export default function ProspectList({ className, refreshRef }: Props) {
                   <div className="field">
                     <span className="label">Message</span>
                     <div className="message-lines">
-                      {p.message.split('\n').filter(Boolean).map((line, i) => (
+                      {p.message.split('\n\n').filter(Boolean).map((line, i) => (
                         <span
                           key={i}
                           className={`copyable ${copiedText === line ? 'copied' : ''}`}
